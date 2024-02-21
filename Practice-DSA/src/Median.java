@@ -1,27 +1,26 @@
 //Q:Find the median of two arrays(it,s may be sorted or un sorted).
+//This is the worst case scenario.
+//Time complexity is :O(n*log(n))
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class Median {
     public static double medianFind(int arr1[] , int arr2[]) {
-        int lenArr1 = arr1.length;
-        int lenArr2 = arr2.length;
-        int lenArr3 = lenArr1 + lenArr2 ;
-        double median = 0.0;
+        int median;
 
-        int arr3[] = new int[lenArr3] ;
-        System.arraycopy(arr1, 0, arr3, 0, lenArr1);
-        System.arraycopy(arr2, 0, arr3, lenArr1, lenArr2);
+        int arr[] = new int[arr1.length + arr2.length];
+        System.arraycopy(arr1, 0, arr, 0, arr1.length);
+        System.arraycopy(arr2, 0, arr, arr1.length, arr2.length);
+        Arrays.sort(arr);
+        int size = arr.length;
 
-        Arrays.sort(arr3);
-
-        if(lenArr3 % 2 == 0) {
-            int value1 = lenArr3 / 2 ;
-            int value2 = (lenArr3 / 2) + 1 ;
-            return median = (arr3[value1] + arr3[value2]) / 2 ;
+        if( size % 2 == 0) {
+            median = (arr[size/2] + arr[size/2 - 1] ) / 2 ;
+            return median;
         }else {
-            return median = (lenArr3 + 1) / 2 ;
+            median = arr[size/2];
+            return median;
         }
     }
     public static void main(String []args) {
